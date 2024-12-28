@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 async function getAllBrands() {
   const { rows } = await pool.query("SELECT * FROM shoes");
-  console.log("its outputting the brands:", rows);
+  //console.log("its outputting the brands:", rows);
   return rows;
 }
 
@@ -18,10 +18,18 @@ async function getOneBrand(brand) {
   const { rows } = await pool.query(
     `SELECT shoe FROM shoes WHERE brand_id = ${idNum}`
   );
-  console.log("its outputting the brand shoe:", rows);
   return rows;
+}
+
+async function addShoe(value, name) {
+  const parseVal = Number(value);
+  await pool.query("INSERT INTO shoes (shoe, brand_id) VALUES ($1,$2)", [
+    name,
+    parseVal,
+  ]);
 }
 module.exports = {
   getAllBrands,
   getOneBrand,
+  addShoe,
 };
