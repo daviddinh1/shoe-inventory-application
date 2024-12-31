@@ -14,7 +14,7 @@ async function getOneBrand(req, res) {
 }
 
 async function getForm(req, res) {
-  console.log("get form params", req.params);
+  // console.log("get form params", req.params);
   res.render("createShoe");
 }
 
@@ -23,9 +23,22 @@ async function addShoe(req, res) {
   await db.addShoe(brand_id, shoe);
   res.redirect("/");
 }
+
+async function getUpdateForm(req, res) {
+  res.render("updateShoe");
+}
+
+async function updateShoe(req, res) {
+  const { shoe_name, shoe } = req.body;
+  await db.updateShoe(shoe_name, shoe);
+  res.redirect("/");
+}
+
 module.exports = {
   getAllBrands,
   getOneBrand,
   getForm,
   addShoe,
+  getUpdateForm,
+  updateShoe,
 };

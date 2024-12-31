@@ -16,7 +16,7 @@ async function getOneBrand(brand) {
     idNum = 3;
   }
   const { rows } = await pool.query(
-    `SELECT shoe FROM shoes WHERE brand_id = ${idNum}`
+    `SELECT shoe, img_link FROM shoes WHERE brand_id = ${idNum}`
   );
   return rows;
 }
@@ -28,8 +28,17 @@ async function addShoe(value, name) {
     parseVal,
   ]);
 }
+
+async function updateShoe(shoe_name, shoe) {
+  //add query that updates db later
+  await pool.query("UPDATE shoes SET shoe = ($1) WHERE shoe = ($2)", [
+    shoe,
+    shoe_name,
+  ]);
+}
 module.exports = {
   getAllBrands,
   getOneBrand,
   addShoe,
+  updateShoe,
 };

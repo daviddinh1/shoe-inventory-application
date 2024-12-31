@@ -8,6 +8,10 @@ appRouter.get("/", appController.getAllBrands);
 appRouter.get("/create", appController.getForm);
 appRouter.post("/create", appController.addShoe);
 
+//this is for updating the shoe
+appRouter.get("/update", appController.getUpdateForm);
+appRouter.post("/update", appController.updateShoe);
+
 appRouter.get("/:shoeBrand", appController.getOneBrand);
 
 module.exports = appRouter;
